@@ -1,4 +1,10 @@
-import './bootstrap.js';
+import './js/jquery-3.1.1.min.js';
+import './js/bootstrap.min.js';
+import './js/plugins/metisMenu/jquery.metisMenu.js';
+import './js/plugins/slimscroll/jquery.slimscroll.min.js';
+import './js/inspinia.js';
+import './js/plugins/pace/pace.min.js';
+
 /*
  * Welcome to your app's main JavaScript file!
  *
