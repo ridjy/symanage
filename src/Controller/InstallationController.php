@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\AdminUserType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -18,9 +19,14 @@ final class InstallationController extends AbstractController
     public function index(
         Request $request,
         EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
         UserPasswordHasherInterface $passwordHasher
     ): Response
     {
+        if ($userRepository->adminExists()) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $user = new User();
         $form = $this->createForm(AdminUserType::class, $user);
         $form->handleRequest($request);

@@ -33,6 +33,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function adminExists(): bool
+    {
+        foreach ($this->findAll() as $user) {
+            if (in_array('ROLE_ADMIN', $user->getRoles(), true)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     //    /**
     //     * @return User[] Returns an array of User objects
     //     */
